@@ -1,0 +1,14 @@
+%h1
+  Managing Shop :: 
+  = @access_token.shop_name
+
+= twitter_bootstrap_form_for @access_token do |f|
+  = f.label 'Enable Auto Renew:' do |inline_f|
+    = inline_f.radio_button :enable_auto_renew, true, "Yes please, auto renew my listings"
+    = inline_f.radio_button :enable_auto_renew, false, "Nope, I'll manage things myself"
+
+  = f.select :renew_every_x_minutes, 'Renew A Listing Every X Minutes:', every_x_minute_options, :class => 'span1'
+
+  .form-actions
+    = f.submit 'Update Settings', :class => 'btn btn-medium btn-primary'
+    = link_to 'Back', root_path, :class => 'btn btn-medium'

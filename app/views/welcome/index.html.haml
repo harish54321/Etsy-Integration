@@ -1,0 +1,27 @@
+%h2 My Linked Shops
+
+%p.well
+  Link up your Etsy shops, and we'll renew your oldest items for you.
+  Get more results for your existing inventory!
+
+- if @access_tokens.any?
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Shop Name
+        %th Linked On
+        %th Listing Auto Renew Enabled
+        %th &nbsp;
+    %tbody
+      - @access_tokens.each do |token|
+        %tr
+          %td= token.shop_name
+          %td= token.created_at
+          %td= token.enable_auto_renew ? "Yep, every #{token.renew_every_x_minutes} minutes" : 'Nope'
+          %td
+            = link_to 'Manage Renew Settings', edit_access_token_path(token), :class => 'btn btn-small'
+- else
+  %p None yet, get started!
+
+.form-actions
+  = link_to 'Link New Shop', etsy_new_authorization_path, :class => 'btn btn-medium btn-success'

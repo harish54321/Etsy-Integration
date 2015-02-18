@@ -1,0 +1,4 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+
+en:
+  hello: "Hello world"
